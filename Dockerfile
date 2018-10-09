@@ -1,8 +1,13 @@
-FROM python:3.7.0-alpine3.8
+FROM node:10.11.0-alpine
 
-ADD . /code
+# Set working directory for any command that follows
+WORKDIR /api-gateway
 
-WORKDIR /code
-RUN pip install -r requirements.txt
+COPY package*.json ./
 
-CMD ["python", "app.py"]
+RUN npm install
+
+# Copy everything from the root dir to the working directory
+COPY . .
+
+CMD [ "node", "src/index.js"]
