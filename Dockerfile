@@ -7,7 +7,9 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm install -g nodemon
+
 # Copy everything from the root dir to the working directory
 COPY . .
 
-CMD [ "node", "src/index.js"]
+CMD [ "npm", "start"]
